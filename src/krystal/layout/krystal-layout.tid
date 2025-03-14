@@ -9,24 +9,17 @@ tags: $:/tags/Layout
 \define containerClasses()
 tc-page-container tc-language-$(languageTitle)$ krystal-container
 \end
-\procedure redirected-navigate-actions()
-  <$action-setfield $tiddler="$:/layout" text="" $timestamp="no">
-    <$action-navigate $to=<<event-navigateTo>> $scroll="yes" />
-  </$action-setfield>
-\end
 
 <$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
-	<$messagecatcher $tm-navigate=<<redirected-navigate-actions>>>
-		{{$:/core/ui/CommandPaletteTemplate}}
-		<div class=<<containerClasses>>>
-			<div class="krystal-layout-container">
-				<<krystal>>
-				<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone tc-page-container-inner">
-					<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] [all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]]" variable="listItem">
-						<$transclude tiddler=<<listItem>>/>
-					</$list>
-				</$dropzone>
-			</div>
+	{{$:/core/ui/CommandPaletteTemplate}}
+	<div class=<<containerClasses>>>
+		<div class="krystal-layout-container">
+			<<krystal>>
+			<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone tc-page-container-inner">
+				<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/toprightbar]] [all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]]" variable="listItem">
+					<$transclude tiddler=<<listItem>>/>
+				</$list>
+			</$dropzone>
 		</div>
-	</$messagecatcher>
+	</div>
 </$navigator>
