@@ -16,7 +16,12 @@ tc-page-container tc-language-$(languageTitle)$ krystal-container
 		<div class="krystal-layout-container">
 			<<krystal>>
 			<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone tc-page-container-inner">
-				<$list filter="[all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]] [all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/toprightbar]]" variable="listItem">
+				<$list
+					filter="[all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]] [all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/toprightbar]]"
+					variable="listItem"
+					storyview="horizontal"
+					emptyMessage="Use search box above. Clicked search links will open here instead of in the main story.<p>No search ideas? Click this link to get started: HelloThere</p>"
+				>
 					<$transclude tiddler=<<listItem>>/>
 				</$list>
 			</$dropzone>
