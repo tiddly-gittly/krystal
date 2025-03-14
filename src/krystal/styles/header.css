@@ -1,12 +1,8 @@
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
-
 .krystal-header--big {
   display: none;
 }
 
 .krystal-header {
-  background: <<color tiddler-background>>;
-  border-bottom: 1px solid <<color page-background>>;
   padding: 1em;
   position: relative;
   z-index: 10;

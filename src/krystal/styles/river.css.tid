@@ -1,0 +1,18 @@
+title: $:/plugins/rmnvsl/krystal/styles/river.css.tid
+tags: $:/tags/Stylesheet
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
+.krystal-container .tc-tiddler-frame {
+  border-bottom: 1px solid <<color page-background>>;
+}
+
+@media (min-width: 960px) {
+  .krystal-container .tc-tiddler-frame {
+    border-right: 1px solid <<color page-background>>;
+  }
+
+  .krystal-container .krystal-link--active {
+    background: <<color message-background>>;
+  }
+}

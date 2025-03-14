@@ -1,6 +1,5 @@
-tags: $:/tags/SideBarSegment $:/plugins/rmnvsl/krystal/header
-title: $:/core/ui/SideBarSegments/site-subtitle
-type: text/vnd.tiddlywiki
+title: $:/plugins/rmnvsl/krystal/ui/SideBarSegments/site-subtitle
+tags: $:/tags/KrystalSideBarSegment $:/plugins/rmnvsl/krystal/header
 
 <div class="tc-site-subtitle">
 

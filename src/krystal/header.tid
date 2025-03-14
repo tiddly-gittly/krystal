@@ -1,5 +1,5 @@
 title: $:/plugins/rmnvsl/krystal/header
-tags: $:/tags/PageTemplate
+tags: $:/tags/KrystalPageTemplate
 list: $:/core/ui/SideBarSegments/site-title $:/core/ui/SideBarSegments/site-subtitle $:/core/ui/SideBarSegments/page-controls $:/plugins/rmnvsl/krystal/headertools $:/core/ui/SideBarSegments/search
 list-before: $:/core/ui/PageTemplate/topleftbar
 

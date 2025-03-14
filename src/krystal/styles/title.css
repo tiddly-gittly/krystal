@@ -1,5 +1,3 @@
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
-
 .krystal-tiddler__title {
   display: none;
 }
@@ -25,7 +23,6 @@
   }
 
   .krystal-tiddler__title > a {
-    color: <<color tiddler-title-foreground>> !important;
     font-size: 1.5em;
     font-weight: 400 !important;
     text-decoration: none !important;

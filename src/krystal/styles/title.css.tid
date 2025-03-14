@@ -1,0 +1,10 @@
+title: $:/plugins/rmnvsl/krystal/styles/title.css.tid
+tags: $:/tags/Stylesheet
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
+@media (min-width: 960px) {
+  .krystal-tiddler__title > a {
+    color: <<color tiddler-title-foreground>> !important;
+  }
+}

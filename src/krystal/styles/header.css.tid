@@ -1,0 +1,9 @@
+title: $:/plugins/rmnvsl/krystal/styles/header.css.tid
+tags: $:/tags/Stylesheet
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
+.krystal-header {
+  background: <<color tiddler-background>>;
+  border-bottom: 1px solid <<color page-background>>;
+}

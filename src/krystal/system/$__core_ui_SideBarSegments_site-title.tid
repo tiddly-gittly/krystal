@@ -1,6 +1,5 @@
-tags: $:/tags/SideBarSegment $:/plugins/rmnvsl/krystal/header $:/plugins/rmnvsl/krystal/header-small
-title: $:/core/ui/SideBarSegments/site-title
-type: text/vnd.tiddlywiki
+title: $:/plugins/rmnvsl/krystal/ui/SideBarSegments/site-title
+tags: $:/tags/KrystalSideBarSegment $:/plugins/rmnvsl/krystal/header $:/plugins/rmnvsl/krystal/header-small
 
 <h1 class="tc-site-title">
 

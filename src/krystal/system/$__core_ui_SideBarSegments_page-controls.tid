@@ -1,5 +1,4 @@
-tags: $:/tags/SideBarSegment $:/plugins/rmnvsl/krystal/header $:/plugins/rmnvsl/krystal/header-small
-title: $:/core/ui/SideBarSegments/page-controls
-type: text/vnd.tiddlywiki
+tags: $:/tags/KrystalSideBarSegment $:/plugins/rmnvsl/krystal/header $:/plugins/rmnvsl/krystal/header-small
+title: $:/plugins/rmnvsl/krystal/ui/SideBarSegments/page-controls
 
 {{||$:/core/ui/PageTemplate/pagecontrols}}
