@@ -24,6 +24,7 @@
 
   .krystal-tiddler__title > a.tc-tiddlylink {
     font-size: 1.5em;
+    line-height: 2em;
     font-weight: 400 !important;
     text-decoration: none !important;
     width: calc(100vh - var(--krystal-header-height) - ( 2 * var(--tiddler-padding)));
@@ -34,6 +35,9 @@
     transform: translateY(-2px);
   }
 
+  .krystal-tiddler__title > a.tc-tiddlylink:hover {
+    line-height: 2em;
+  }
   .krystal-tiddler__title--start-active > a.tc-tiddlylink,
   .krystal-tiddler__title--end-active> a.tc-tiddlylink {
     pointer-events: initial;

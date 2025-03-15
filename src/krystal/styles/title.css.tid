@@ -1,7 +1,14 @@
 title: $:/plugins/rmnvsl/krystal/styles/title.css.tid
 tags: $:/tags/Stylesheet
 
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+\rules except horizrule dash
+
+<% if [[$:/themes/tiddlywiki/vanilla/options/stickytitles]get[text]match[yes]] %>
+/** fix menubar with sticky title https://github.com/Jermolene/TiddlyWiki5/issues/4471#issuecomment-594456486*/
+.krystal-container div.tc-tiddler-title {
+  top: calc(0px - var(--tiddler-padding));
+}
+<% endif %>
 
 @media (min-width: 960px) {
   .krystal-tiddler__title > a {
