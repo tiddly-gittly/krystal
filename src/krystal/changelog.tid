@@ -5,7 +5,7 @@ All notable changes to this project will be documented here.
 The format is based on [[Keep a Changelog|https://keepachangelog.com/en/1.0.0/]],
 and this project adheres to [[Semantic Versioning|https://semver.org/spec/v2.0.0.html]].
 
-!! [0.6.0] - 2024-03-15
+!! [0.6.1] - 2025-03-15
 
 !!! Changed
 
@@ -13,7 +13,8 @@ and this project adheres to [[Semantic Versioning|https://semver.org/spec/v2.0.0
 ** So it can works alone side any other layout, reduce conflict with other plugins.
 ** Updated core compatibility to TiddlyWiki version `5.1.23` (where the [ext[Layouts|https://tiddlywiki.com/#Alternative%20page%20layouts]] were introduced) and higher.
 * Minor adjustments in the Installation instructions for clarity.
-* extract backlink to a standalone plugin [[inverse-link-and-folder|$:/plugins/linonetwo/inverse-link-and-folder]], so it can be easily customized. Work without krystal plugin. Also krystal can works with other backlink plugins.
+* Extract backlink to a standalone plugin [[inverse-link-and-folder|$:/plugins/linonetwo/inverse-link-and-folder]], so it can be easily customized. Works without the krystal plugin. Also, krystal can work with other backlink plugins.
+* Add compatibility to many other plugins to reduce conflict.
 
 !! [0.5.2] - 2024-02-24
 
