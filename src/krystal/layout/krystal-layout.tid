@@ -1,30 +1,38 @@
 title: $:/plugins/rmnvsl/krystal/krystal-layout
-name: <<lingo Name $:/plugins/rmnvsl/krystal/language/>>
+name: Krystal
 icon: $:/plugins/rmnvsl/krystal/krystal-layout-image
 description: Horizontal Story River
 tags: $:/tags/Layout
 
 \whitespace trim
 \import [subfilter{$:/core/config/GlobalImportFilter}]
-\define containerClasses()
-tc-page-container tc-language-$(languageTitle)$ krystal-container
-\end
+
+<$vars
+	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
+	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
+	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
+	tv-enable-drag-and-drop={{$:/config/DragAndDrop/Enable}}
+	tv-show-missing-links={{$:/config/MissingLinks}}
+	storyviewTitle={{$:/view}}
+	languageTitle={{{ [{$:/language}get[name]] }}}>
+
+<div class={{{ [all[shadows+tiddlers]tag[$:/tags/ClassFilters/PageTemplate]!is[draft]] :map:flat[subfilter{!!text}] tc-page-container [[tc-page-view-]addsuffix<storyviewTitle>] [[tc-language-]addsuffix<languageTitle>] [[krystal-container]] :and[unique[]join[ ]] }}} >
 
 <$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
 	{{$:/core/ui/CommandPaletteTemplate}}
 	<div class=<<containerClasses>>>
-		<div class="krystal-layout-container">
-			<<krystal>>
-			<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone tc-page-container-inner">
-				<$list
-					filter="[all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]] [all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/toprightbar]] -[[$:/core/ui/PageTemplate/story]]"
-					variable="listItem"
-					storyview="horizontal"
-					emptyMessage="Use search box above. Clicked search links will open here instead of in the main story.<p>No search ideas? Click this link to get started: HelloThere</p>"
-				>
-					<$transclude tiddler=<<listItem>>/>
-				</$list>
-			</$dropzone>
-		</div>
+		<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone tc-page-container-inner">
+			<!-- We move some page template to `$:/tags/KrystalPageTemplate`, preventing overwrite core tiddlers. We minus those core tiddlers in the end of filter. -->
+			<$list
+				filter="[all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]] [all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/toprightbar]] -[[$:/core/ui/PageTemplate/story]]"
+				variable="listItem"
+			>
+				<$transclude tiddler=<<listItem>>/>
+			</$list>
+		</$dropzone>
 	</div>
 </$navigator>
+
+</div>
+
+</$vars>
