@@ -17,8 +17,8 @@ Sets plugin behavior
   };
 
   exports.after = ["render"];
-  const isInKrystalLayout = () => $tw.wiki.getTiddlerText("$:/layout") === "$:/plugins/rmnvsl/krystal/krystal-layout";
-
+  
+  const isInKrystalLayout = () => $tw.wiki && $tw.wiki.getTiddlerText("$:/layout") === "$:/plugins/rmnvsl/krystal/krystal-layout";
   exports.startup = function () {
     header();
 
@@ -219,7 +219,7 @@ Sets plugin behavior
 
   function closeTiddlersToRight(event) {
     if (!isInKrystalLayout()) {
-      return;
+      return event;
     }
     const storyTiddler = $tw.wiki.getTiddler(STORY_TIDDLER_TITLE);
     const tiddlers = $tw.wiki.getTiddlerList(STORY_TIDDLER_TITLE);
