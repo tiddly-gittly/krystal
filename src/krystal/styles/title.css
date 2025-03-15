@@ -22,7 +22,7 @@
     opacity: 1;
   }
 
-  .krystal-tiddler__title > a {
+  .krystal-tiddler__title > a.tc-tiddlylink {
     font-size: 1.5em;
     font-weight: 400 !important;
     text-decoration: none !important;
@@ -34,9 +34,10 @@
     transform: translateY(-2px);
   }
 
-  .krystal-tiddler__title--start-active > a,
-  .krystal-tiddler__title--end-active> a {
+  .krystal-tiddler__title--start-active > a.tc-tiddlylink,
+  .krystal-tiddler__title--end-active> a.tc-tiddlylink {
     pointer-events: initial;
+    border: none;
   }
 
   .krystal-tiddler__title--end > a {
