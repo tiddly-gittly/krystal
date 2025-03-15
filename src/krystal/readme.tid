@@ -1,7 +1,7 @@
 title: $:/plugins/rmnvsl/krystal/readme
 
-Horizontal story view for tiddlers and bi-directional links.
+Horizontal story view for tiddlers. 
 
-Homepage: https://github.com/crazko/krystal
+This version refactor the horizontal view to a layout, reduce the conflict with other plugins, and allow you switch between Standard layout (card view) and this horizontal view.
 
-Made by [[Roman Veselý|https://romanvesely.com/]] - <span class="krystal-icon">{{$:/core/images/github}}</span> [[@crazko|https://github.com/crazko]], <span class="krystal-icon">{{$:/core/images/twitter}}</span> [[@rmnvsl|https://twitter.com/rmnvsl]]
+Fork from https://github.com/crazko/krystal Made by [[Roman Veselý|https://romanvesely.com/]] - <span class="krystal-icon">{{$:/core/images/github}}</span> [[@crazko|https://github.com/crazko]], <span class="krystal-icon">{{$:/core/images/twitter}}</span> [[@rmnvsl|https://twitter.com/rmnvsl]]
