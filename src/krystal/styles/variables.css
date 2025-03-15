@@ -1,0 +1,11 @@
+/* Utils */
+
+.krystal-setting-text-right {
+  text-align: right;
+}
+
+.krystal-icon svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}

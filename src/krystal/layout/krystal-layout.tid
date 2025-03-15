@@ -1,0 +1,36 @@
+title: $:/plugins/rmnvsl/krystal/krystal-layout
+name: Krystal
+icon: $:/plugins/rmnvsl/krystal/krystal-layout-image
+description: Horizontal Story River
+tags: $:/tags/Layout
+
+\whitespace trim
+\import [subfilter{$:/core/config/GlobalImportFilter}]
+\function container-classes()
+[all[shadows+tiddlers]tag[$:/tags/ClassFilters/PageTemplate]!is[draft]] :map:flat[subfilter{!!text}] tc-page-container [[tc-page-view-]addsuffix<storyviewTitle>] [[tc-language-]addsuffix<languageTitle>] [[krystal-container]] :and[unique[]join[ ]]
+\end
+
+<$vars
+	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
+	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
+	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
+	tv-enable-drag-and-drop={{$:/config/DragAndDrop/Enable}}
+	tv-show-missing-links={{$:/config/MissingLinks}}
+	storyviewTitle={{$:/view}}
+	languageTitle={{{ [{$:/language}get[name]] }}}
+>
+	<div class=<<container-classes>>>
+		<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+			{{$:/core/ui/CommandPaletteTemplate}}
+			<$dropzone enable=<<tv-enable-drag-and-drop>> class="tc-dropzone tc-page-container-inner">
+				<!-- We move some page template to `$:/tags/KrystalPageTemplate`, preventing overwrite core tiddlers. We minus those core tiddlers in the end of filter. -->
+				<$list
+					filter="[all[shadows+tiddlers]tag[$:/tags/KrystalPageTemplate]!has[draft.of]] [all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] -[[$:/core/ui/PageTemplate/sidebar]] -[[$:/core/ui/PageTemplate/toprightbar]] -[[$:/core/ui/PageTemplate/story]]"
+					variable="listItem"
+				>
+					<$transclude tiddler=<<listItem>>/>
+				</$list>
+			</$dropzone>
+		</$navigator>
+	</div>
+</$vars>

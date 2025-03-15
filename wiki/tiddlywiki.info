@@ -1,0 +1,12 @@
+{
+    "description": "Basic client-server edition",
+    "plugins": [],
+    "themes": [
+        "tiddlywiki/vanilla",
+        "tiddlywiki/snowwhite"
+    ],
+    "languages": [
+        "zh-Hans"
+    ],
+    "build": {}
+}

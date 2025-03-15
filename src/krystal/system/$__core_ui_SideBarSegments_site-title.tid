@@ -1,0 +1,8 @@
+title: $:/plugins/rmnvsl/krystal/ui/SideBarSegments/site-title
+tags: $:/tags/KrystalSideBarSegment $:/plugins/rmnvsl/krystal/header $:/plugins/rmnvsl/krystal/header-small
+
+<h1 class="tc-site-title">
+
+<$transclude tiddler="$:/SiteTitle" mode="inline"/>
+
+</h1>

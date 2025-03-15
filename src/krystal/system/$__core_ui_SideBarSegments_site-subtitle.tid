@@ -1,0 +1,8 @@
+title: $:/plugins/rmnvsl/krystal/ui/SideBarSegments/site-subtitle
+tags: $:/tags/KrystalSideBarSegment $:/plugins/rmnvsl/krystal/header
+
+<div class="tc-site-subtitle">
+
+<$transclude tiddler="$:/SiteSubtitle" mode="inline"/>
+
+</div>

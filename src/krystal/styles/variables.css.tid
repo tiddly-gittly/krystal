@@ -1,0 +1,9 @@
+title: $:/plugins/rmnvsl/krystal/styles/variables.css.tid
+tags: $:/tags/Stylesheet
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
+.tc-page-container.krystal-container {
+  --tiddler-padding: {{$:/plugins/rmnvsl/krystal/config/tiddlerpadding}}px;
+  --tiddler-width: {{$:/plugins/rmnvsl/krystal/config/tiddlerwidth}}px;
+}
