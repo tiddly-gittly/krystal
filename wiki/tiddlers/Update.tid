@@ -5,6 +5,6 @@ type: text/vnd.tiddlywiki
 
 ⚠ Better to make a backup before, just in case something went wrong.
 
-Drag & drop the link [[$:/plugins/rmnvsl/krystal]] to your TiddlyWiki. It should ask you to import the plugin & replace old version with the new one.
+Drag & drop the link [[$:/plugins/linonetwo/krystal]] to your TiddlyWiki. It should ask you to import the plugin & replace old version with the new one.
 
 Not installed yet? See [[Installation]] for more instructions.

@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/rmnvsl/krystal/plugin.js
+title: $:/plugins/linonetwo/krystal/plugin.js
 type: application/javascript
 module-type: startup
 
@@ -9,11 +9,11 @@ Sets plugin behavior
 const STORY_TIDDLER_TITLE = "$:/StoryList";
 const ACTIVE_LINK_CLASS = "krystal-link--active";
 const MAXIMIZED_TIDDLER_CLASS = "krystal-tiddler__frame--maximized";
-const KRYSTAL_LAYOUT = "$:/plugins/rmnvsl/krystal/krystal-layout";
+const KRYSTAL_LAYOUT = "$:/plugins/linonetwo/krystal/krystal-layout";
 
 const KRYSTAL_CONFIG = {
-  highlight: "$:/plugins/rmnvsl/krystal/config/highlight",
-  tiddlerwidth: "$:/plugins/rmnvsl/krystal/config/tiddlerwidth",
+  highlight: "$:/plugins/linonetwo/krystal/config/highlight",
+  tiddlerwidth: "$:/plugins/linonetwo/krystal/config/tiddlerwidth",
 };
 
 exports.after = ["render"];
@@ -270,7 +270,7 @@ exports.startup = function () {
     const navigateTo = event.navigateTo;
 
     const config = $tw.wiki.getTiddler(
-      "$:/plugins/rmnvsl/krystal/config/close"
+      "$:/plugins/linonetwo/krystal/config/close"
     );
 
     if (config && config.fields && config.fields.text === "disable") {

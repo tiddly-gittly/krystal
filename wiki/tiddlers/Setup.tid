@@ -9,6 +9,6 @@ type: text/vnd.tiddlywiki
 !!! Subtitle
 <$edit-text tiddler="$:/SiteSubtitle" default="" tag="input"/>
 
-Go to [[plugin settings|$:/plugins/rmnvsl/krystal/settings]] for more options. Make sure you also check the list of [[Recommended plugins]].
+Go to [[plugin settings|$:/plugins/linonetwo/krystal/settings]] for more options. Make sure you also check the list of [[Recommended plugins]].
 
 How to [[get started|GettingStarted]]? See the [[control panel|$:/ControlPanel]] for more options.

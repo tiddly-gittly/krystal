@@ -5,7 +5,7 @@ type: text/vnd.tiddlywiki
 
 At the bottom of each tiddler is a section of backlinks - list of tiddlers that are linking back.
 
-You can optionally turn it off in the [[plugin settings|$:/plugins/rmnvsl/krystal/settings]]. This might be helpful in case you'd like to use a different plugin that provides such functionality. Here are couple of them you can use instead of Krystal's built-in functionality:
+You can optionally turn it off in the [[plugin settings|$:/plugins/linonetwo/krystal/settings]]. This might be helpful in case you'd like to use a different plugin that provides such functionality. Here are couple of them you can use instead of Krystal's built-in functionality:
 
 * [[tiddlyresearch-references|https://kebifurai.github.io/TiddlyResearch/#%24%3A%2Fplugins%2Fkebi%2Ftiddlyresearch-references]]
 * [[TWCrossLinks|https://akhater.github.io/drift/#%24%3A%2Fak%2Fplugins%2FTWCrossLinks]]

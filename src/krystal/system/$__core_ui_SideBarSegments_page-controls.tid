@@ -1,4 +1,4 @@
-tags: $:/tags/KrystalSideBarSegment $:/plugins/rmnvsl/krystal/header $:/plugins/rmnvsl/krystal/header-small
-title: $:/plugins/rmnvsl/krystal/ui/SideBarSegments/page-controls
+tags: $:/tags/KrystalSideBarSegment $:/plugins/linonetwo/krystal/header $:/plugins/linonetwo/krystal/header-small
+title: $:/plugins/linonetwo/krystal/ui/SideBarSegments/page-controls
 
 {{||$:/core/ui/PageTemplate/pagecontrols}}

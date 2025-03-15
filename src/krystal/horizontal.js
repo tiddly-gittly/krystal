@@ -1,5 +1,5 @@
 /*\
-title: $:/plugins/rmnvsl/krystal/horizontal.js
+title: $:/plugins/linonetwo/krystal/horizontal.js
 type: application/javascript
 module-type: storyview
 

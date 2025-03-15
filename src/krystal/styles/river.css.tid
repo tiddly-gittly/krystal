@@ -1,4 +1,4 @@
-title: $:/plugins/rmnvsl/krystal/styles/river.css.tid
+title: $:/plugins/linonetwo/krystal/styles/river.css.tid
 tags: $:/tags/Stylesheet
 
 \rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
@@ -17,4 +17,4 @@ tags: $:/tags/Stylesheet
   }
 }
 
-{{$:/plugins/rmnvsl/krystal/styles/sticky.css.tid}}
+{{$:/plugins/linonetwo/krystal/styles/sticky.css.tid}}
