@@ -1,0 +1,13 @@
+title: $:/plugins/rmnvsl/krystal/styles/sticky.css.tid
+code-body: yes
+
+<!-- Fix conflict with $:/themes/tiddlywiki/vanilla/sticky, where z-index is inverted, cause left tiddler on top instead of on bottom. -->
+
+<$reveal state="$:/themes/tiddlywiki/vanilla/options/stickytitles" type="match" text="yes">
+<$list filter="[range[100]]">
+`.krystal-container .tc-story-river .tc-tiddler-frame:nth-child(100n+`<$text text=<<currentTiddler>>/>`) {
+z-index: 0;
+}
+`
+</$list>
+</$reveal>
