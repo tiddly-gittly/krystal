@@ -21,37 +21,73 @@ exports.after = ["render"];
 const checkIsInKrystalLayout = () => $tw.wiki && $tw.wiki.getTiddlerText("$:/layout") === KRYSTAL_LAYOUT;
 exports.startup = function () {
   let isInKrystalLayout = checkIsInKrystalLayout();
-  header();
-
-  window.addEventListener("resize", header);
-
-  const throttledTiddlerFrameEffects = throttle(tiddlerFrameEffects, 10);
-  window.addEventListener("scroll", throttledTiddlerFrameEffects, true);
-
-  $tw.rootWidget.addEventListener("tm-remove", tiddlersCount);
-  $tw.rootWidget.addEventListener("tm-scroll", function (event) {
-    if (event.type === "tm-scroll") {
-      tiddlersCount(event);
-      scroll(event);
-    }
-  });
-
-  $tw.rootWidget.addEventListener("tm-maximize", function (event) {
-    if (event.type === "tm-maximize") {
-      tiddlerFullscreen(event.param);
-    }
-  });
-
-  $tw.hooks.addHook("th-navigating", closeTiddlersToRight);
-
-  $tw.wiki.addEventListener("change", highlightOpenTiddlerLinks);
-  $tw.wiki.addEventListener("change", reinitiateTiddlerFrameEffects);
   $tw.wiki.addEventListener("change", function updateIsKrystalLayout (changes) {
     if (!$tw.utils.hop(changes, "$:/layout")) {
       return;
     }
-    isInKrystalLayout = checkIsInKrystalLayout();
+    const nextIsInKrystalLayout = checkIsInKrystalLayout();
+    if (nextIsInKrystalLayout !== isInKrystalLayout) {
+      isInKrystalLayout = nextIsInKrystalLayout;
+      if (isInKrystalLayout) {
+        loadLogic();
+      } else {
+        unloadLogic();
+      }
+    }
   });
+
+  function loadLogic() {
+    header();
+
+    window.addEventListener("resize", header);
+  
+    const throttledTiddlerFrameEffects = throttle(tiddlerFrameEffects, 10);
+    window.addEventListener("scroll", throttledTiddlerFrameEffects, true);
+  
+    $tw.rootWidget.addEventListener("tm-remove", tiddlersCount);
+    $tw.rootWidget.addEventListener("tm-scroll", function (event) {
+      if (event.type === "tm-scroll") {
+        tiddlersCount(event);
+        scroll(event);
+      }
+    });
+  
+    $tw.rootWidget.addEventListener("tm-maximize", function (event) {
+      if (event.type === "tm-maximize") {
+        tiddlerFullscreen(event.param);
+      }
+    });
+  
+    $tw.hooks.addHook("th-navigating", closeTiddlersToRight);
+  
+    $tw.wiki.addEventListener("change", highlightOpenTiddlerLinks);
+    $tw.wiki.addEventListener("change", reinitiateTiddlerFrameEffects);
+  }
+  function unloadLogic() {
+    window.removeEventListener("resize", header);
+    window.removeEventListener("scroll", tiddlerFrameEffects, true);
+
+    // FIXME: Core don't have this, wait until PR accepts.
+    // $tw.rootWidget.removeEventListener("tm-remove", tiddlersCount);
+    // $tw.rootWidget.removeEventListener("tm-scroll", function (event) {
+    //   if (event.type === "tm-scroll") {
+    //     tiddlersCount(event);
+    //     scroll(event);
+    //   }
+    // });
+    // $tw.rootWidget.removeEventListener("tm-maximize", function (event) {
+    //   if (event.type === "tm-maximize") {
+    //     tiddlerFullscreen(event.param);
+    //   }
+    // });
+    $tw.hooks.removeHook("th-navigating", closeTiddlersToRight);
+    $tw.wiki.removeEventListener("change", highlightOpenTiddlerLinks);
+    $tw.wiki.removeEventListener("change", reinitiateTiddlerFrameEffects);
+  }
+
+  if (isInKrystalLayout) {
+    loadLogic();
+  }
 
   function highlightOpenTiddlerLinks(changes) {
     if (!isInKrystalLayout) {
