@@ -4,7 +4,8 @@ tags: $:/tags/KrystalPageTemplate
 \whitespace trim
 <section class="tc-story-river" role="main">
 
-<section class="story-backdrop">
+<!-- Not showing top elements, to prevent collision with top bar. -->
+<!-- <section class="story-backdrop">
 
 <$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
 
@@ -12,7 +13,7 @@ tags: $:/tags/KrystalPageTemplate
 
 </$list>
 
-</section>
+</section> -->
 
 <$list filter="[list[$:/StoryList]]" history="$:/HistoryList" template="$:/core/ui/StoryTiddlerTemplate" storyview="horizontal" emptyMessage={{$:/config/EmptyStoryMessage}}/>
 
