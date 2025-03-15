@@ -6,8 +6,8 @@ type: text/vnd.tiddlywiki
 
 You can either:
 
-* save this whole ~TiddlyWiki by clicking the save button {{$:/core/ui/Buttons/save-wiki}}
-* add just the ''bare'' plugin by dragging the following link onto your project [[$:/plugins/rmnvsl/krystal]]
+* Install from [[CPL|https://tw-cpl.netlify.app/]] in one click.
+* add by dragging the following link onto your project [[$:/plugins/rmnvsl/krystal]]
 * already installed? Check how to [[Update]] to the new version.
 
 !!! ⚠ Warning
