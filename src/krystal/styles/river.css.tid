@@ -16,3 +16,5 @@ tags: $:/tags/Stylesheet
     background: <<color message-background>>;
   }
 }
+
+{{$:/plugins/rmnvsl/krystal/styles/sticky.css.tid}}
