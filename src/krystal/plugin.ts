@@ -137,21 +137,10 @@ function throttle(callback: () => void, limit: number): ThrottledFunction {
     // Clear highlights
     document.querySelectorAll(`.${DRAG_OVER_CLASS}`).forEach((el) => el.classList.remove(DRAG_OVER_CLASS));
 
-    // Get dragged title from the data transfer
+    // Get dragged title from the data transfer (set by TW5's makeDraggable)
     let draggedTitle: string | null = null;
     if (event.dataTransfer) {
-      draggedTitle = $tw.utils.stringifyList(
-        $tw.wiki.filterTiddlers(
-          '[all[tiddlers]!is[system]sort[title]]',
-          undefined,
-          $tw.wiki.makeTiddlerIterator([event.dataTransfer.getData('text/plain')]),
-        ),
-      );
-      // text/plain contains the tiddler title list; extract the first title
-      const plainText = event.dataTransfer.getData('text/plain');
-      if (plainText) {
-        draggedTitle = plainText;
-      }
+      draggedTitle = event.dataTransfer.getData('text/plain');
     }
 
     if (!draggedTitle) return;
