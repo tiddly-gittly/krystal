@@ -4,7 +4,6 @@ const STORY_TIDDLER_TITLE = '$:/StoryList';
 const ACTIVE_LINK_CLASS = 'krystal-link--active';
 const MAXIMIZED_TIDDLER_CLASS = 'krystal-tiddler__frame--maximized';
 const DRAG_HANDLE_CLASS = 'krystal-drag-handle';
-const DRAGGING_CLASS = 'krystal-tiddler__frame--dragging';
 const DRAG_OVER_CLASS = 'krystal-tiddler__frame--drag-over';
 const KRYSTAL_LAYOUT = '$:/plugins/linonetwo/krystal/krystal-layout';
 
@@ -56,75 +55,116 @@ function throttle(callback: () => void, limit: number): ThrottledFunction {
   });
 
   // ---- drag handler helpers ----
+  // Uses TW5's $tw.utils.makeDraggable() for drag source (sets $tw.dragInProgress
+  // which makes $dropzone ignore internal drags) + event delegation on
+  // .tc-story-river for drop handling (dragover must call preventDefault to
+  // enable the drop, and stopPropagation to prevent $dropzone overriding).
+
+  let storyRiverDropBound = false;
 
   function injectDragHandles(): void {
     if (!isInKrystalLayout) return;
+    const storyRiver = document.querySelector<HTMLElement>('.tc-story-river');
+    if (!storyRiver) return;
+
+    // Ensure story-river drop delegation is set up once
+    if (!storyRiverDropBound) {
+      storyRiver.addEventListener('dragover', onStoryRiverDragOver);
+      storyRiver.addEventListener('drop', onStoryRiverDrop);
+      storyRiverDropBound = true;
+    }
+
     const frames = document.querySelectorAll<HTMLElement>('.tc-tiddler-frame');
     frames.forEach((frame) => {
+      // Already have a handle?
       if (frame.querySelector(`.${DRAG_HANDLE_CLASS}`)) return;
+
+      const title = frame.getAttribute('data-tiddler-title');
+      if (!title) return;
+
+      // Inject drag handle at top of frame
       const handle = document.createElement('div');
       handle.className = DRAG_HANDLE_CLASS;
       handle.draggable = true;
-      handle.title = 'Drag to reorder';
+      handle.title = '拖动重新排序';
       handle.innerHTML =
         '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="4" cy="4" r="1.5"/><circle cx="10" cy="4" r="1.5"/><circle cx="4" cy="8" r="1.5"/><circle cx="10" cy="8" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="10" cy="12" r="1.5"/></svg>';
-
-      handle.addEventListener('dragstart', onDragStart);
-      handle.addEventListener('dragend', onDragEnd);
-      frame.addEventListener('dragover', onDragOver);
-      frame.addEventListener('dragleave', onDragLeave);
-      frame.addEventListener('drop', onDrop);
-
       frame.insertBefore(handle, frame.firstChild);
+
+      // Use TW5's built-in makeDraggable for proper drag setup
+      // This sets $tw.dragInProgress so the $dropzone ignores internal drags
+      $tw.utils.makeDraggable({
+        domNode: frame,
+        selector: `.${DRAG_HANDLE_CLASS}`,
+        dragTiddlerFn: () => title,
+        dragImageType: 'blank',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        widget: $tw.rootWidget as any,
+      });
     });
   }
 
-  let draggedTitle: string | null = null;
+  // ---- story river drop handling (event delegation) ----
 
-  function onDragStart(event: DragEvent): void {
-    const handle = event.currentTarget as HTMLElement;
-    const frame = handle.closest('.tc-tiddler-frame') as HTMLElement;
-    if (!frame) return;
-    const title = frame.getAttribute('data-tiddler-title');
-    if (!title) return;
-    draggedTitle = title;
-    frame.classList.add(DRAGGING_CLASS);
+  function onStoryRiverDragOver(event: DragEvent): void {
+    // Must call preventDefault to allow drop on this element
+    event.preventDefault();
+    // Must call stopPropagation to prevent $dropzone from overriding dropEffect
+    event.stopPropagation();
     if (event.dataTransfer) {
-      event.dataTransfer.effectAllowed = 'move';
-      event.dataTransfer.setData('text/plain', title);
+      event.dataTransfer.dropEffect = 'move';
+    }
+    // Highlight the target frame
+    highlightDropTarget(event);
+  }
+
+  function highlightDropTarget(event: DragEvent): void {
+    // Clear all highlights
+    document.querySelectorAll(`.${DRAG_OVER_CLASS}`).forEach((el) => el.classList.remove(DRAG_OVER_CLASS));
+    // Find the frame under the cursor using coordinates
+    const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLElement;
+    if (!target) return;
+    const frame = target.closest('.tc-tiddler-frame') as HTMLElement;
+    if (frame) {
+      frame.classList.add(DRAG_OVER_CLASS);
     }
   }
 
-  function onDragEnd(_event: DragEvent): void {
-    const frames = document.querySelectorAll<HTMLElement>(`.${DRAGGING_CLASS}`);
-    frames.forEach((f) => f.classList.remove(DRAGGING_CLASS));
+  function onStoryRiverDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // Clear highlights
     document.querySelectorAll(`.${DRAG_OVER_CLASS}`).forEach((el) => el.classList.remove(DRAG_OVER_CLASS));
-    draggedTitle = null;
-  }
 
-  function onDragOver(event: DragEvent): void {
-    event.preventDefault();
+    // Get dragged title from the data transfer
+    let draggedTitle: string | null = null;
+    if (event.dataTransfer) {
+      draggedTitle = $tw.utils.stringifyList(
+        $tw.wiki.filterTiddlers(
+          '[all[tiddlers]!is[system]sort[title]]',
+          undefined,
+          $tw.wiki.makeTiddlerIterator([event.dataTransfer.getData('text/plain')]),
+        ),
+      );
+      // text/plain contains the tiddler title list; extract the first title
+      const plainText = event.dataTransfer.getData('text/plain');
+      if (plainText) {
+        draggedTitle = plainText;
+      }
+    }
+
     if (!draggedTitle) return;
-    if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
-    const frame = event.currentTarget as HTMLElement;
-    const title = frame.getAttribute('data-tiddler-title');
-    if (!title || title === draggedTitle) return;
-    frame.classList.add(DRAG_OVER_CLASS);
-  }
 
-  function onDragLeave(event: DragEvent): void {
-    const frame = event.currentTarget as HTMLElement;
-    frame.classList.remove(DRAG_OVER_CLASS);
-  }
-
-  function onDrop(event: DragEvent): void {
-    event.preventDefault();
-    const frame = event.currentTarget as HTMLElement;
-    frame.classList.remove(DRAG_OVER_CLASS);
-    if (!draggedTitle) return;
-    const targetTitle = frame.getAttribute('data-tiddler-title');
+    // Find the frame under the cursor using coordinates
+    const target = document.elementFromPoint(event.clientX, event.clientY) as HTMLElement;
+    if (!target) return;
+    const targetFrame = target.closest('.tc-tiddler-frame') as HTMLElement;
+    if (!targetFrame) return;
+    const targetTitle = targetFrame.getAttribute('data-tiddler-title');
     if (!targetTitle || targetTitle === draggedTitle) return;
 
+    // Reorder the story list
     const storyTiddler = $tw.wiki.getTiddler(STORY_TIDDLER_TITLE);
     const tiddlers = $tw.wiki.getTiddlerList(STORY_TIDDLER_TITLE);
     const fromIndex = tiddlers.indexOf(draggedTitle);

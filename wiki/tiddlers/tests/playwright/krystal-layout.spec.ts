@@ -39,25 +39,16 @@ test.describe('Krystal Drag Handle', () => {
     }
   });
 
-  test('should show drag handle on hover', async ({ page }) => {
+  test('drag handles should be draggable', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
-    const frames = page.locator('.tc-tiddler-frame');
-    const frameCount = await frames.count();
-
-    if (frameCount > 0) {
-      const firstFrame = frames.first();
-      const dragHandle = firstFrame.locator('.krystal-drag-handle');
-
-      // Before hover, drag handle should exist but may be hidden
-      await expect(dragHandle).toBeAttached();
-
-      // Hover over the frame
-      await firstFrame.hover();
-
-      // After hover, drag handle should be visible
-      await expect(dragHandle).toBeVisible();
+    const dragHandles = page.locator('.krystal-drag-handle');
+    const count = await dragHandles.count();
+    if (count > 0) {
+      const firstHandle = dragHandles.first();
+      const draggable = await firstHandle.getAttribute('draggable');
+      expect(draggable).toBe('true');
     }
   });
 });

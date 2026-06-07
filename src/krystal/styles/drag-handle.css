@@ -1,19 +1,20 @@
+/* Drag handle injected at top of each tiddler frame */
 .krystal-drag-handle {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
-  width: 32px;
-  height: 20px;
+  width: 36px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: grab;
   opacity: 0;
   transition: opacity 0.2s ease;
-  background: rgba(128, 128, 128, 0.15);
-  border-radius: 0 0 6px 6px;
+  background: rgba(128, 128, 128, 0.12);
+  border-radius: 0 0 8px 8px;
   padding: 2px;
 }
 
@@ -27,22 +28,19 @@
 }
 
 .krystal-drag-handle svg {
-  fill: #888;
+  fill: #666;
   display: block;
 }
 
-.krystal-tiddler__frame--dragging {
-  opacity: 0.5;
-  outline: 2px dashed #aaa;
-  outline-offset: -2px;
-}
-
+/* Drop target highlight */
 .krystal-tiddler__frame--drag-over {
-  outline: 2px solid #4a90d9;
-  outline-offset: -2px;
+  outline: 3px solid #4a90d9;
+  outline-offset: -3px;
+  background: rgba(74, 144, 217, 0.05);
 }
 
-/* Ensure drag handle doesn't interfere with the tiddler padding in edit mode */
-.tc-tiddler-frame .krystal-drag-handle {
-  margin-top: 0;
+/* TW5 adds tc-dragging to the frame during internal drag */
+.tc-tiddler-frame.tc-dragging {
+  opacity: 0.45;
 }
+
