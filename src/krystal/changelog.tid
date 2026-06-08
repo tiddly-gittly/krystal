@@ -5,6 +5,19 @@ All notable changes to this project will be documented here.
 The format is based on [[Keep a Changelog|https://keepachangelog.com/en/1.0.0/]],
 and this project adheres to [[Semantic Versioning|https://semver.org/spec/v2.0.0.html]].
 
+!! [0.8.0] - 2026-06-08
+
+!!! Added
+
+* Drag handle on each tiddler frame to reorder tiddlers in the story river via drag-and-drop
+
+!!! Changed
+
+* Rewrite `plugin.js` and `horizontal.js` to TypeScript
+* Use TW5's built-in `$tw.utils.makeDraggable()` for drag setup, avoiding conflicts with `$dropzone`
+* Add TypeScript tooling: `tsconfig.json`, `eslint.config.mjs`, `dprint.json`
+* Add Playwright E2E test suite
+
 !! [0.6.1] - 2025-03-15
 
 !!! Changed
