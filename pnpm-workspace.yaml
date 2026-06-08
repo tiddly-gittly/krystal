@@ -1,7 +1,7 @@
 allowBuilds:
-  '@parcel/watcher': set this to true or false
-  dprint: set this to true or false
-  esbuild: set this to true or false
-  svelte-preprocess: set this to true or false
-  unrs-resolver: set this to true or false
+  '@parcel/watcher': true
+  dprint: true
+  esbuild: true
+  svelte-preprocess: true
+  unrs-resolver: true
 ignoreScripts: false
